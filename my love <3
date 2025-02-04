@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0a0a0a;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            color: white;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 4em;
+            text-shadow: 0 0 20px #ff00ff;
+            animation: glow 2s infinite;
+        }
+
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff69b4;
+            animation: float 6s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px #ff00ff; }
+            50% { text-shadow: 0 0 40px #ff00ff, 0 0 60px #ff00ff; }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.5em;
+            background: #ff1493;
+            border: none;
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background: #ff00ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    <div class="container">
+        <h1>💖 Любимая! 💖</h1>
+        <p style="font-size: 2em; margin: 20px 0;">Обожаю тебя!<br>Ты — моя вселенная! 🌟</p>
+        <button onclick="showMessage()">Нажми меня!</button>
+    </div>
+
+    <script>
+        
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤';
+                heart.className = 'heart';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+       
+        function showMessage() {
+            const message = document.createElement('div');
+            message.style.color = '#fff';
+            message.style.fontSize = '1.5em';
+            message.style.marginTop = '20px';
+            message.innerHTML = 'Я хотел бы извиниться , если я тебя когда либо и чем либо обидел , прости , что уделяю тебе так мало времени , и что мы столь мало общаемся :( ';
+            document.querySelector('.container').appendChild(message);
+        }
+
+        
+        window.onload = createHearts;
+    </script>
+</body>
+</html>
